@@ -1,12 +1,12 @@
-A simple script+module to find points in a row on a 2D plane.
+A fast script+module for finding points in a row on a 2D plane.
 
 Usecases are almost none, but I was bored.
 Can be used for tic-tac-toe ig.
 
-Script usage:
+As a script:
     $ rowfind <row_size> x1,y1 x2,y2 x3,y3 ...
 
-Module usage:
+As a module:
     import rowfind
     coords = [(0, 0), (1, 1), (2, 2), (2, 3), (2, 4), (5, 5), (4, 4)]
     row_size = 3
@@ -32,5 +32,5 @@ Output:
     . X . . . .
     X . . . . .
 
-Build as wheel:
+Build a wheel:
     $ poetry build -f wheel -o dist

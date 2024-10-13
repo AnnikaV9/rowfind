@@ -1,41 +1,38 @@
 """
-A simple script+module to find points in a row on a 2D plane.
+A fast script+module for finding points in a row on a 2D plane.
 """
 
 import sys
-import itertools
 
 
-def check(coords: tuple[tuple[int, int], ...]) -> bool:
+def check_direction(start: tuple[int, int], direction: tuple[int, int],
+                    coords_set: set[tuple[int, int]], row_size: int) -> bool:
     """
-    Check if the given coordinates form a row.
+    Check if `row_size` points starting from `start` and extending in the
+    given direction are in the list of coordinates.
     """
-    Xs, Ys = zip(*coords)
+    x, y = start
+    dx, dy = direction
+    for i in range(1, row_size):
+        if (x + i * dx, y + i * dy) not in coords_set:
+            return False
 
-    if len(set(Xs)) == 1 and sorted(Ys) == list(range(min(Ys), max(Ys) + 1)):
-        return True
-
-    if len(set(Ys)) == 1 and sorted(Xs) == list(range(min(Xs), max(Xs) + 1)):
-        return True
-
-    if len(set(x - y for x, y in coords)) == 1 and sorted(Xs) == list(range(min(Xs), max(Xs) + 1)):
-        return True
-
-    if len(set(x + y for x, y in coords)) == 1 and sorted(Xs) == list(range(min(Xs), max(Xs) + 1)):
-        return True
-
-    return False
+    return True
 
 
 def find_rows(coords: list[tuple[int, int]], row_size: int) -> tuple[tuple[int, int]]:
     """
-    Find all possible combinations of `row_size` points and check each
-    combination with check()
+    Find all rows of `row_size` points by checking from each point in all
+    directions.
     """
+    directions = ((1, 0), (0, 1), (1, 1), (1, -1))
+    coords_set = set(coords)
     rows = []
-    for combination in itertools.combinations(coords, row_size):
-        if check(combination):
-            rows.append(combination)
+    for x, y in coords:
+        for dx, dy in directions:
+            if check_direction((x, y), (dx, dy), coords_set, row_size):
+                row = [(x + i * dx, y + i * dy) for i in range(row_size)]
+                rows.append(tuple(row))
 
     return tuple(rows)
 
@@ -65,9 +62,7 @@ def draw_graph(coords: list[tuple[int, int]], rows: tuple[tuple[int, int]]):
     """
     min_x, max_x = min(x for x, y in coords), max(x for x, y in coords)
     min_y, max_y = min(y for x, y in coords), max(y for x, y in coords)
-
     grid = [[" ." for _ in range(min_x, max_x + 1)] for _ in range(min_y, max_y + 1)]
-
     for x, y in coords:
         grid[y - min_y][x - min_x] = " O"
 
