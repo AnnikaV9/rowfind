@@ -11,7 +11,6 @@ Module usage:
     coords = [(0, 0), (1, 1), (2, 2), (2, 3), (2, 4), (5, 5), (4, 4)]
     row_size = 3
     rows = rowfind.find_rows(coords, row_size)
-    print("\n".join(str(row) for row in rows))
 
     # Where `coords` is a list of (x, y) coordinates and `row_size` is
     # the number of points in a row to find.
@@ -19,6 +18,7 @@ Module usage:
     # of points that form a row.
 
     # To visualize the results:
+    print("\n".join(str(row) for row in rows))
     graph = rowfind.draw_graph(coords, rows)
     print(graph)
 
