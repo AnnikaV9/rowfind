@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "rowfind"
+version = "0.1.0"
+description = "A simple script+module to find points in a row on a 2D plane"
+authors = ["AnnikaV9 <carrot.moncher@gmail.com>"]
+license = "MIT"
+readme = "README.txt"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.scripts]
+rowfind = "rowfind:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
