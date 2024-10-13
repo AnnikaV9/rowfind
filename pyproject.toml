@@ -3,6 +3,8 @@ name = "rowfind"
 version = "0.1.0"
 description = "A simple script+module to find points in a row on a 2D plane"
 authors = ["AnnikaV9 <carrot.moncher@gmail.com>"]
+homepage = "https://github.com/AnnikaV9/rowfind"
+repository = "https://github.com/AnnikaV9/rowfind"
 license = "MIT"
 readme = "README.txt"
 
