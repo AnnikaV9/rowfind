@@ -2,10 +2,7 @@ Find points that make an equally spaced row on a 2D plane.
 
 Fast and simple, works by walking in 4 directions (1,0  0,1  1,1  1,-1) to n steps from a point and checking if the next point exists, until the required row size is reached.
 
-As a script:
-    rowfind <row_size> <steps> x1,y1 x2,y2 x3,y3 ...
-
-As a module:
+Example usage:
     import rowfind
     coords = [
         (0, 0), (1, 1), (2, 2), (3, 3), (3, 4),
@@ -20,6 +17,10 @@ As a module:
     # Where `coords` is a tuple/list of (x, y) coordinates,
     # `row_size` is the length of rows to find and `steps`
     # is the number of steps to walk before checking a point.
+    #
+    # The `steps` parameter can be a single integer, a
+    # tuple/list of integers or None. If None, it tries all
+    # possible steps that fit into the plane's bounds.
     #
     # The return value is a tuple of tuples, where each
     # tuple is a group of points that form a row.
