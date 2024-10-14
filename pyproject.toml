@@ -6,7 +6,7 @@ authors = ["AnnikaV9 <carrot.moncher@gmail.com>"]
 homepage = "https://github.com/AnnikaV9/rowfind"
 repository = "https://github.com/AnnikaV9/rowfind"
 license = "MIT"
-readme = "README.txt"
+readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
