@@ -1,21 +1,25 @@
-A fast script+module for finding points in a row on a 2D plane.
+Find points that make a row on a 2D plane.
 
-Usecases are almost none, but I was bored.
-Can be used for tic-tac-toe ig.
+Fast and simple, works by walking in 4 directions (1,0  0,1  1,1  1,-1) from a point and checking if the next point exists, until the required row size is reached.
 
 As a script:
-    $ rowfind <row_size> x1,y1 x2,y2 x3,y3 ...
+    rowfind <row_size> x1,y1 x2,y2 x3,y3 ...
 
 As a module:
     import rowfind
-    coords = [(0, 0), (1, 1), (2, 2), (2, 3), (2, 4), (5, 5), (4, 4)]
+    coords = [
+        (0, 0), (1, 1), (2, 2), (3, 3), (3, 4),
+        (3, 5), (12, 3), (12, 4), (11, 3), (11, 2),
+        (11, 1), (10, 3), (5, 3), (6, 2), (7, 1),
+        (7, 0), (8, 1), (8, 5), (9, 5)
+    ]
     row_size = 3
     rows = rowfind.find_rows(coords, row_size)
 
-    # Where `coords` is a list of (x, y) coordinates and `row_size` is
-    # the number of points in a row to find.
-    # The return value is a tuple of tuples, where each tuple is a group
-    # of points that form a row.
+    # Where `coords` is a tuple/list of (x, y) coordinates
+    # and `row_size` is the length of rows to find.
+    # The return value is a tuple of tuples, where each
+    # tuple is a group of points that form a row.
 
     # To visualize the results:
     print("\n".join(str(row) for row in rows))
@@ -23,14 +27,15 @@ As a module:
     print(graph)
 
 Output:
+    ((5, 3), (6, 2), (7, 1))
+    ((11, 1), (11, 2), (11, 3))
+    ((3, 3), (3, 4), (3, 5))
     ((0, 0), (1, 1), (2, 2))
-    ((2, 2), (2, 3), (2, 4))
-    . . . . . O
-    . . X . O .
-    . . X . . .
-    . . X . . .
-    . X . . . .
-    X . . . . .
-
-Build a wheel:
-    $ poetry build -f wheel -o dist
+    ((1, 1), (2, 2), (3, 3))
+    ((10, 3), (11, 3), (12, 3))
+    . . . X . . . . O O . . .
+    . . . X . . . . . . . . O
+    . . . X . X . . . . X X X
+    . . X . . . X . . . . X .
+    . X . . . . . X O . . X .
+    X . . . . . . O . . . . .
