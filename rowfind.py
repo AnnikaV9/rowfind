@@ -1,8 +1,6 @@
 """
-A fast script+module for finding points in a row on a 2D plane.
+Find points that make an equally spaced row on a 2D plane.
 """
-
-import sys
 
 
 def find_rows(coords: tuple[tuple[int, int]] | list[tuple[int, int]], row_size: int, steps: int | tuple[int] | list[int] | None = 1) -> tuple[tuple[int, int]]:
